@@ -12,7 +12,8 @@ public class AppDAOImpl implements AppDAO
     private final EntityManager entityManager;
 
     @Autowired
-    public AppDAOImpl(EntityManager entityManager) {
+    public AppDAOImpl(EntityManager entityManager)
+    {
         this.entityManager = entityManager;
     }
 
@@ -21,5 +22,11 @@ public class AppDAOImpl implements AppDAO
     public void save(Instructor instructor)
     {
         entityManager.persist(instructor);
+    }
+
+    @Override
+    public Instructor findInstructorById(int id)
+    {
+        return entityManager.find(Instructor.class, id);
     }
 }

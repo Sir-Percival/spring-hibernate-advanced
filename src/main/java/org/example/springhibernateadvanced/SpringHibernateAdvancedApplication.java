@@ -21,7 +21,8 @@ public class SpringHibernateAdvancedApplication
     {
         return runner ->
         {
-            createInstructor(appDAO);
+//            createInstructor(appDAO);
+            findInstructorById(appDAO, 1);
         };
     }
 
@@ -35,5 +36,12 @@ public class SpringHibernateAdvancedApplication
         System.out.println("Saving instructor: " + instructor);
         appDAO.save(instructor);
         System.out.println("Instructor saved!");
+    }
+
+    private void findInstructorById(AppDAO appDAO, int id)
+    {
+        Instructor instructor = appDAO.findInstructorById(id);
+        System.out.println("Found instructor: " + instructor);
+        System.out.println("Only his/her instructor details: " + instructor.getInstructorDetail());
     }
 }
