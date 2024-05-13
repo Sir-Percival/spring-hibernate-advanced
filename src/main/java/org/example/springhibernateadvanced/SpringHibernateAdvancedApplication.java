@@ -22,7 +22,9 @@ public class SpringHibernateAdvancedApplication
         return runner ->
         {
 //            createInstructor(appDAO);
-            findInstructorById(appDAO, 1);
+//            findInstructorById(appDAO, 1);
+            deleteInstructorById(appDAO, 1);
+
         };
     }
 
@@ -41,7 +43,20 @@ public class SpringHibernateAdvancedApplication
     private void findInstructorById(AppDAO appDAO, int id)
     {
         Instructor instructor = appDAO.findInstructorById(id);
-        System.out.println("Found instructor: " + instructor);
-        System.out.println("Only his/her instructor details: " + instructor.getInstructorDetail());
+        if(instructor != null)
+        {
+            System.out.println("Found instructor: " + instructor);
+            System.out.println("Only his/her instructor details: " + instructor.getInstructorDetail());
+        }
+        else
+        {
+            System.out.println("Didn't find instructor with id: " + id);
+        }
+    }
+
+    private void deleteInstructorById(AppDAO appDAO, int id)
+    {
+        appDAO.deleteInstructorById(id);
+        System.out.println("Deleted instructor with id: " + id);
     }
 }
